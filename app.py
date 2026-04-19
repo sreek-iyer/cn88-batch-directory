@@ -56,8 +56,9 @@ COLS = {
 }
 
 EC_MEMBERS = [
-    "Abhayakumar NS", "Ajay Antony", "Akilan Karthikeyan", "Anand Victor", "Arun Divakar",
-    "Francis Sujith", "Joseph John", "Litty", "Satish Karunkaran", "Shivan G. Nair",
+    "Akilan Karthikeyan", "Francis Sujith",
+    "Abhayakumar NS", "Ajay Antony", "Anand Victor", "Arun Divakar",
+    "Joseph John", "Litty", "Satish Karunkaran", "Shivan G. Nair",
     "Sreekanth Iyer", "Adv. Jayakrishnan", "Rajesh Sukumaran Nair", "Vinu Thomas Kuzhuveli", "Abdul Kader",
     "Adv. Praveen", "Ajith Ram", "Benoy A Pazhoor", "Binu Baby Vaidian", "Jacob Joseph",
     "Mahesh R", "Sam Kurien", "Sanju Joy", "Shyam Viju", "Symon Thelappillil"
@@ -131,23 +132,26 @@ def drive_thumbnail(url: str, size: int = 400) -> str | None:
 # --------------------------------------------------------------------------- #
 def login_view() -> None:
     st.image("https://raw.githubusercontent.com/sreek-iyer/cn88-batch-directory/main/images/cover.jpeg", use_container_width=True)
-    st.markdown("<h1 style='text-align: center; color: #1a3a52;'>🎓 CN88 — Batch Directory</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; font-size: 20px; font-weight: bold; color: #d4af37;'>Christ Nagar 1988 Students — Men of Excellence 😊</p>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #888; margin-top: 20px;'>Members-only directory. Sign in to connect with your batchmates.</p>", unsafe_allow_html=True)
+
+    st.markdown("<div style='padding: 30px 20px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);'><h1 style='margin: 0; color: #fff; font-size: 2.5em;'>🎓 CN88</h1><p style='margin: 10px 0 0 0; color: #f0f0f0; font-size: 0.95em; letter-spacing: 1px;'>Batch Directory</p></div>", unsafe_allow_html=True)
+
+    st.markdown("<div style='padding: 25px 20px; background: #f8f9fa; text-align: center;'><p style='margin: 0 0 8px 0; font-size: 1.2em; font-weight: 600; color: #1a1a1a;'>Christ Nagar 1988</p><p style='margin: 0; font-size: 0.95em; color: #d4af37; font-weight: 500;'>Men of Excellence 😊</p><p style='margin: 15px 0 0 0; color: #666; font-size: 0.9em; line-height: 1.5;'>Connect with your batchmates. Share experiences. Build lifelong bonds.</p></div>", unsafe_allow_html=True)
+
     st.markdown("")
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3 = st.columns([1, 1, 1])
     with col2:
-        st.button("🔐 Sign in with Google", type="primary", on_click=st.login, use_container_width=True)
+        st.button("Sign in with Google", type="primary", on_click=st.login, use_container_width=True)
+
     if FORM_URL:
-        st.markdown("---")
-        st.markdown("<p style='text-align: center; color: #666;'>Not in the directory yet?</p>", unsafe_allow_html=True)
-        st.link_button("📝 Fill the Form", FORM_URL, use_container_width=True)
-    st.markdown("---")
-    col1, col2, col3 = st.columns(3)
+        st.markdown("")
+        st.link_button("📝 Join the Community", FORM_URL, use_container_width=True)
+
+    st.markdown("")
+    col1, col2 = st.columns(2)
     with col1:
-        st.link_button("👥 CN88 Facebook Group", "https://www.facebook.com/groups/596744407056517", use_container_width=True)
-    with col3:
-        st.markdown("<p style='text-align: center; font-size: 12px; color: #999;'><strong>cn88moe@gmail.com</strong></p>", unsafe_allow_html=True)
+        st.link_button("Facebook Group", "https://www.facebook.com/groups/596744407056517", use_container_width=True)
+    with col2:
+        st.markdown("<p style='text-align: center; font-size: 0.85em; color: #999; margin: 8px 0;'><strong>cn88moe@gmail.com</strong></p>", unsafe_allow_html=True)
 
 
 def not_in_directory_view(email: str) -> None:
