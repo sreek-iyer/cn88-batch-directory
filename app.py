@@ -23,9 +23,20 @@ from google.oauth2.service_account import Credentials
 # CONFIG                                                                      #
 # --------------------------------------------------------------------------- #
 st.set_page_config(
-    page_title="CN88 Batch Directory",
+    page_title="CN88 Men of Excellence",
     page_icon="🎓",
     layout="wide",
+)
+
+st.markdown(
+    """
+    <meta property="og:title" content="CN88 Men of Excellence" />
+    <meta property="og:description" content="Christ Nagar School, Batch of 1988 — Batch Directory" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:title" content="CN88 Men of Excellence" />
+    <meta name="twitter:description" content="Christ Nagar School, Batch of 1988 — Batch Directory" />
+    """,
+    unsafe_allow_html=True,
 )
 
 SHEET_URL = st.secrets["gsheet"]["sheet_url"]
