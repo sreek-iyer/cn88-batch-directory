@@ -170,10 +170,11 @@ def login_view() -> None:
         st.markdown("""
         <a href="https://www.facebook.com/groups/596744407056517" target="_blank" style="
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 14px 20px;
+            gap: 6px;
+            padding: 16px 20px;
             background: linear-gradient(135deg, #1877f2 0%, #0a66c2 100%);
             color: white;
             text-align: center;
@@ -181,26 +182,37 @@ def login_view() -> None:
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            min-height: 78px;
+            box-sizing: border-box;
             box-shadow: 0 4px 6px rgba(24, 119, 242, 0.3);
         ">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Facebook Group
+            <p style="margin: 0; font-size: 0.9em; font-weight: 500;">Connect with batchmates:</p>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <span style="font-weight: 700; font-size: 1em;">Join Facebook Group</span>
+            </div>
         </a>
         """, unsafe_allow_html=True)
     with col2:
         st.markdown("""
         <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             color: white;
             text-align: center;
             border-radius: 8px;
             padding: 16px 20px;
+            min-height: 78px;
+            box-sizing: border-box;
             box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
         ">
-            <p style="margin: 0 0 8px 0; font-size: 0.9em;">For more details or to contribute:</p>
+            <p style="margin: 0; font-size: 0.9em; font-weight: 500;">For more details or to contribute:</p>
             <a href="mailto:cn88moe@gmail.com" style="color: white; text-decoration: none; font-weight: 700; font-size: 1em;">📧 cn88moe@gmail.com</a>
         </div>
         """, unsafe_allow_html=True)
