@@ -192,35 +192,21 @@ def login_view() -> None:
         """, unsafe_allow_html=True)
     with col2:
         st.markdown("""
-        <div style="
+        <a href="mailto:cn88moe@gmail.com" style="
+            display: block;
+            padding: 14px 20px;
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             color: white;
             text-align: center;
             border-radius: 8px;
-            padding: 14px 20px;
+            text-decoration: none;
             font-weight: 600;
-            font-size: 0.9em;
+            font-size: 0.95em;
+            transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
-            line-height: 1.6;
-        ">
-            <p style="margin: 0 0 8px 0;">For more details about the directory or to contribute: drop a note to</p>
-            <a href="mailto:cn88moe@gmail.com" style="color: white; text-decoration: underline; font-weight: 700; font-size: 1.05em;">📧 cn88moe@gmail.com</a>
-        </div>
+        ">📧 cn88moe@gmail.com</a>
         """, unsafe_allow_html=True)
 
-    st.markdown("")
-    st.markdown("""
-    <div style='
-        background: linear-gradient(135deg, #f0f4ff 0%, #fff5f7 100%);
-        border: 2px solid #e0e7ff;
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-    '>
-        <p style='margin: 0 0 12px 0; font-size: 0.95em; color: #333;'>For more details about the directory or to contribute:</p>
-        <p style='margin: 0; font-size: 1.1em; font-weight: 700; color: #0066cc;'>📧 cn88moe@gmail.com</p>
-    </div>
-    """, unsafe_allow_html=True)
 
 
 def not_in_directory_view(email: str) -> None:
