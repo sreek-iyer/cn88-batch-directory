@@ -55,6 +55,14 @@ COLS = {
     "networking_fallback":  "Children: [Name/Age/Current Study or Job]. This helps us facilitate internship matching and organize family-inclusive batch meets.",
 }
 
+EC_MEMBERS = [
+    "Abhayakumar NS", "Ajay Antony", "Akilan Karthikeyan", "Anand Victor", "Arun Divakar",
+    "Francis Sujith", "Joseph John", "Litty", "Satish Karunkaran", "Shivan G. Nair",
+    "Sreekanth Iyer", "Adv. Jayakrishnan", "Rajesh Sukumaran Nair", "Vinu Thomas Kuzhuveli", "Abdul Kader",
+    "Adv. Praveen", "Ajith Ram", "Benoy A Pazhoor", "Binu Baby Vaidian", "Jacob Joseph",
+    "Mahesh R", "Sam Kurien", "Sanju Joy", "Shyam Viju", "Symon Thelappillil"
+]
+
 # --------------------------------------------------------------------------- #
 # DATA LAYER                                                                  #
 # --------------------------------------------------------------------------- #
@@ -246,6 +254,11 @@ def directory_view() -> None:
             st.rerun()
         st.divider()
         st.caption(f"{len(df)} batchmates in directory")
+        st.divider()
+        st.markdown("### 🎯 Executive Committee")
+        ec_text = "\n".join(EC_MEMBERS)
+        with st.container(border=True):
+            st.markdown(ec_text)
 
     st.title("🎓 CN88 — Batch Directory")
     st.caption("Christ Nagar School, Batch of 1988")
