@@ -289,9 +289,9 @@ def directory_view() -> None:
         st.caption(f"{len(df)} batchmates in directory")
         st.divider()
         st.markdown("### 🎯 Executive Committee")
-        ec_text = "\n".join(EC_MEMBERS)
+        ec_text = "<br>".join(EC_MEMBERS)
         with st.container(border=True):
-            st.markdown(ec_text)
+            st.markdown(ec_text, unsafe_allow_html=True)
 
     st.title("🎓 CN88 — Batch Directory")
     st.caption("Christ Nagar School, Batch of 1988")
