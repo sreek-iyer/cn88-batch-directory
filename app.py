@@ -137,7 +137,7 @@ def login_view() -> None:
     st.markdown("---")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.link_button("👥 Facebook Group", "https://www.facebook.com/groups/596744407056517", use_container_width=True)
+        st.link_button("👥 CN88 Facebook Group", "https://www.facebook.com/groups/596744407056517", use_container_width=True)
     with col3:
         st.markdown("<p style='text-align: center; font-size: 12px; color: #999;'><strong>cn88moe@gmail.com</strong></p>", unsafe_allow_html=True)
 
