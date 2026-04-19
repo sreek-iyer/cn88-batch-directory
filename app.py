@@ -122,17 +122,20 @@ def drive_thumbnail(url: str, size: int = 400) -> str | None:
 # AUTH VIEWS                                                                  #
 # --------------------------------------------------------------------------- #
 def login_view() -> None:
-    st.title("🎓 CN88 — Batch Directory")
-    st.caption("Christ Nagar School, Batch of 1988")
-    st.markdown(
-        "Members-only. Please sign in with the Google account whose email you "
-        "used on the batch form."
-    )
-    st.button("Sign in with Google", type="primary", on_click=st.login)
+    st.image("https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1000&q=80", use_container_width=True)
+    st.markdown("<h1 style='text-align: center; color: #1a3a52;'>🎓 CN88 — Batch Directory</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; font-size: 20px; font-weight: bold; color: #d4af37;'>Christ Nagar 1988 Students — Men of Excellence 😊</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #888; margin-top: 20px;'>Members-only directory. Sign in to connect with your batchmates.</p>", unsafe_allow_html=True)
+    st.markdown("")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.button("🔐 Sign in with Google", type="primary", on_click=st.login, use_container_width=True)
     if FORM_URL:
-        st.divider()
-        st.markdown("**Haven't filled the form yet?**")
-        st.link_button("Open the CN88 form ↗", FORM_URL)
+        st.markdown("---")
+        st.markdown("<p style='text-align: center; color: #666;'>Not in the directory yet?</p>", unsafe_allow_html=True)
+        st.link_button("📝 Fill the Form", FORM_URL, use_container_width=True)
+    st.markdown("---")
+    st.markdown("<p style='text-align: center; font-size: 12px; color: #999;'>Questions? Contact the executive committee: <strong>cn88moe@gmail.com</strong></p>", unsafe_allow_html=True)
 
 
 def not_in_directory_view(email: str) -> None:
@@ -238,9 +241,7 @@ def directory_view() -> None:
             allowed_emails.clear()
             st.rerun()
         st.divider()
-        st.caption(f"{len(df)} batchmates listed")
-        if FORM_URL:
-            st.link_button("Edit your entry ↗", FORM_URL, use_container_width=True)
+        st.caption(f"{len(df)} batchmates in directory")
 
     st.title("🎓 CN88 — Batch Directory")
     st.caption("Christ Nagar School, Batch of 1988")
