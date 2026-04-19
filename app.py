@@ -151,7 +151,11 @@ def login_view() -> None:
     with col1:
         st.link_button("Facebook Group", "https://www.facebook.com/groups/596744407056517", use_container_width=True)
     with col2:
-        st.markdown("<p style='text-align: center; font-size: 0.85em; color: #999; margin: 8px 0;'><strong>cn88moe@gmail.com</strong></p>", unsafe_allow_html=True)
+        st.link_button("Email Us", "mailto:cn88moe@gmail.com", use_container_width=True)
+
+    st.markdown("")
+    with st.container(border=True):
+        st.markdown("<div style='text-align: center;'><p style='margin: 0 0 8px 0; font-size: 0.95em; color: #333;'>For more details about the directory or to contribute:</p><p style='margin: 0; font-size: 1em; font-weight: 600; color: #0066cc;'>📧 cn88moe@gmail.com</p></div>", unsafe_allow_html=True)
 
 
 def not_in_directory_view(email: str) -> None:
