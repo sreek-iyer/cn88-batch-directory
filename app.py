@@ -200,8 +200,18 @@ def login_view() -> None:
         """, unsafe_allow_html=True)
 
     st.markdown("")
-    with st.container(border=True):
-        st.markdown("<div style='text-align: center;'><p style='margin: 0 0 8px 0; font-size: 0.95em; color: #333;'>For more details about the directory or to contribute:</p><p style='margin: 0; font-size: 1em; font-weight: 600; color: #0066cc;'>📧 cn88moe@gmail.com</p></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style='
+        background: linear-gradient(135deg, #f0f4ff 0%, #fff5f7 100%);
+        border: 2px solid #e0e7ff;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    '>
+        <p style='margin: 0 0 12px 0; font-size: 0.95em; color: #333;'>For more details about the directory or to contribute:</p>
+        <p style='margin: 0; font-size: 1.1em; font-weight: 700; color: #0066cc;'>📧 cn88moe@gmail.com</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 def not_in_directory_view(email: str) -> None:
