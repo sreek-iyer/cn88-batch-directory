@@ -192,19 +192,17 @@ def login_view() -> None:
         """, unsafe_allow_html=True)
     with col2:
         st.markdown("""
-        <a href="mailto:cn88moe@gmail.com" style="
-            display: block;
-            padding: 14px 20px;
+        <div style="
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             color: white;
             text-align: center;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            padding: 16px 20px;
             box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
-        ">📧 cn88moe@gmail.com</a>
+        ">
+            <p style="margin: 0 0 8px 0; font-size: 0.9em;">For more details or to contribute:</p>
+            <a href="mailto:cn88moe@gmail.com" style="color: white; text-decoration: none; font-weight: 700; font-size: 1em;">📧 cn88moe@gmail.com</a>
+        </div>
         """, unsafe_allow_html=True)
 
 
