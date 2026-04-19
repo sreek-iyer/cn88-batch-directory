@@ -144,14 +144,60 @@ def login_view() -> None:
 
     if FORM_URL:
         st.markdown("")
-        st.link_button("📝 Join the Community", FORM_URL, use_container_width=True)
+        st.markdown(f"""
+        <a href="{FORM_URL}" target="_blank" style="
+            display: block;
+            padding: 14px 20px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        ">📝 Join the Community</a>
+        """, unsafe_allow_html=True)
 
     st.markdown("")
     col1, col2 = st.columns(2)
     with col1:
-        st.link_button("Facebook Group", "https://www.facebook.com/groups/596744407056517", use_container_width=True)
+        st.markdown("""
+        <a href="https://www.facebook.com/groups/596744407056517" target="_blank" style="
+            display: block;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #1877f2 0%, #0a66c2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(24, 119, 242, 0.3);
+        ">📘 Facebook Group</a>
+        """, unsafe_allow_html=True)
     with col2:
-        st.link_button("Email Us", "mailto:cn88moe@gmail.com", use_container_width=True)
+        st.markdown("""
+        <a href="mailto:cn88moe@gmail.com" style="
+            display: block;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
+        ">📧 Email Us</a>
+        """, unsafe_allow_html=True)
 
     st.markdown("")
     with st.container(border=True):
