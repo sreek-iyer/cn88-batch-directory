@@ -15,6 +15,7 @@ import re
 
 import gspread
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 from google.oauth2.service_account import Credentials
 
@@ -271,31 +272,107 @@ def person_card(row: pd.Series) -> None:
                 st.caption(" · ".join(meta_bits))
 
 
-def directory_view() -> None:
-    df = load_directory()
-    me_email = (st.user.email or "").lower()
-    me_name = st.user.name or me_email
+def insights_view(df: pd.DataFrame) -> None:
+    country_col = COLS["country"]
+    city_col = COLS["city"]
+    industry_col = COLS["industry"]
 
-    with st.sidebar:
-        if getattr(st.user, "picture", None):
-            st.image(st.user.picture, width=80)
-        st.markdown(f"**{me_name}**\n\n{me_email}")
-        st.button("Sign out", on_click=st.logout, use_container_width=True)
-        if st.button("🔄 Refresh from sheet", use_container_width=True):
-            load_directory.clear()
-            allowed_emails.clear()
-            st.rerun()
-        st.divider()
-        st.caption(f"{len(df)} batchmates in directory")
-        st.divider()
-        st.markdown("### 🎯 Executive Committee")
-        ec_text = "<br>".join(EC_MEMBERS)
-        with st.container(border=True):
-            st.markdown(ec_text, unsafe_allow_html=True)
+    df_clean = df.copy()
+    if country_col in df_clean.columns:
+        df_clean[country_col] = df_clean[country_col].astype(str).str.strip()
+        df_clean = df_clean[df_clean[country_col] != ""]
+    if city_col in df_clean.columns:
+        df_clean[city_col] = df_clean[city_col].astype(str).str.strip()
 
-    st.title("🎓 CN88 — Batch Directory")
-    st.caption("Christ Nagar School, Batch of 1988")
+    total = len(df)
+    n_countries = df_clean[country_col].nunique() if country_col in df_clean.columns else 0
+    n_cities = df_clean[city_col].nunique() if city_col in df_clean.columns else 0
 
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Members", total)
+    c2.metric("Countries", n_countries)
+    c3.metric("Cities", n_cities)
+
+    if country_col in df_clean.columns and len(df_clean) > 0:
+        st.markdown("### 🌍 Members by Country")
+        country_counts = (
+            df_clean[country_col].value_counts().reset_index()
+        )
+        country_counts.columns = ["Country", "Members"]
+
+        fig_map = px.choropleth(
+            country_counts,
+            locations="Country",
+            locationmode="country names",
+            color="Members",
+            hover_name="Country",
+            color_continuous_scale="Blues",
+        )
+        fig_map.update_layout(
+            margin=dict(l=0, r=0, t=10, b=0),
+            geo=dict(showframe=False, showcoastlines=True, projection_type="natural earth"),
+            height=420,
+        )
+        st.plotly_chart(fig_map, use_container_width=True)
+
+        fig_bar = px.bar(
+            country_counts,
+            x="Country",
+            y="Members",
+            color="Members",
+            color_continuous_scale="Blues",
+            text="Members",
+        )
+        fig_bar.update_traces(textposition="outside")
+        fig_bar.update_layout(margin=dict(l=0, r=0, t=10, b=0), showlegend=False, height=350)
+        st.plotly_chart(fig_bar, use_container_width=True)
+
+    if city_col in df_clean.columns and len(df_clean) > 0:
+        st.markdown("### 🏙️ Top Cities")
+        city_counts = (
+            df_clean[df_clean[city_col] != ""][city_col]
+            .value_counts()
+            .head(15)
+            .reset_index()
+        )
+        city_counts.columns = ["City", "Members"]
+        if len(city_counts) > 0:
+            fig_city = px.bar(
+                city_counts,
+                x="Members",
+                y="City",
+                orientation="h",
+                color="Members",
+                color_continuous_scale="Purples",
+                text="Members",
+            )
+            fig_city.update_traces(textposition="outside")
+            fig_city.update_layout(
+                margin=dict(l=0, r=0, t=10, b=0),
+                showlegend=False,
+                yaxis=dict(autorange="reversed"),
+                height=max(300, 30 * len(city_counts)),
+            )
+            st.plotly_chart(fig_city, use_container_width=True)
+
+    if industry_col in df_clean.columns:
+        ind = df_clean[industry_col].astype(str).str.strip()
+        ind = ind[ind != ""]
+        if len(ind) > 0:
+            st.markdown("### 💼 Industry Mix")
+            ind_counts = ind.value_counts().reset_index()
+            ind_counts.columns = ["Industry", "Members"]
+            fig_ind = px.pie(
+                ind_counts,
+                names="Industry",
+                values="Members",
+                hole=0.45,
+            )
+            fig_ind.update_layout(margin=dict(l=0, r=0, t=10, b=0), height=400)
+            st.plotly_chart(fig_ind, use_container_width=True)
+
+
+def directory_list_view(df: pd.DataFrame) -> None:
     query = st.text_input("Search name, city, company, profession…", "").strip()
     country_col = COLS["country"]
     countries = sorted(
@@ -335,6 +412,38 @@ def directory_view() -> None:
         if i + 1 < len(rows):
             with col_b:
                 person_card(pd.Series(rows[i + 1]))
+
+
+def directory_view() -> None:
+    df = load_directory()
+    me_email = (st.user.email or "").lower()
+    me_name = st.user.name or me_email
+
+    with st.sidebar:
+        if getattr(st.user, "picture", None):
+            st.image(st.user.picture, width=80)
+        st.markdown(f"**{me_name}**\n\n{me_email}")
+        st.button("Sign out", on_click=st.logout, use_container_width=True)
+        if st.button("🔄 Refresh from sheet", use_container_width=True):
+            load_directory.clear()
+            allowed_emails.clear()
+            st.rerun()
+        st.divider()
+        st.caption(f"{len(df)} batchmates in directory")
+        st.divider()
+        st.markdown("### 🎯 Executive Committee")
+        ec_text = "<br>".join(EC_MEMBERS)
+        with st.container(border=True):
+            st.markdown(ec_text, unsafe_allow_html=True)
+
+    st.title("🎓 CN88 — Batch Directory")
+    st.caption("Christ Nagar School, Batch of 1988")
+
+    tab_dir, tab_insights = st.tabs(["📇 Directory", "📊 Insights & Map"])
+    with tab_dir:
+        directory_list_view(df)
+    with tab_insights:
+        insights_view(df)
 
 
 # --------------------------------------------------------------------------- #
